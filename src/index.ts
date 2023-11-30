@@ -1,11 +1,12 @@
 import type MarkdownIt from 'markdown-it'
+import { escapeHTML } from 'zeed'
 
 export interface MarkdownItGitHubAlertsOptions {
   /**
    * List of markers to match.
    * @default ['TIP', 'NOTE', 'IMPORTANT', 'WARNING', 'CAUTION']
    */
-  markers?: string[]
+  markers?: string[] | '*'
 
   /**
    * If markers case sensitively on matching.
@@ -47,13 +48,15 @@ const DEFAULT_GITHUB_ICONS = {
 
 const MarkdownItGitHubAlerts: MarkdownIt.PluginWithOptions<MarkdownItGitHubAlertsOptions> = (md, options = {}) => {
   const {
+    markers = ['TIP', 'NOTE', 'IMPORTANT', 'WARNING', 'CAUTION'],
     icons = DEFAULT_GITHUB_ICONS,
     matchCaseSensitive = true,
     titles = {},
     classPrefix = 'markdown-alert',
   } = options
 
-  const RE = new RegExp(`^\\[\\!(\\w+)\\]([^\\n\\r]*)`, matchCaseSensitive ? '' : 'i')
+  const markerNameRE = markers === '*' ? '\\w+' : markers.join('|')
+  const RE = new RegExp(`^\\[\\!(${markerNameRE})\\]([^\\n\\r]*)`, matchCaseSensitive ? '' : 'i')
 
   md.core.ruler.after('block', 'github-alerts', (state) => {
     const tokens = state.tokens
@@ -71,17 +74,13 @@ const MarkdownItGitHubAlerts: MarkdownIt.PluginWithOptions<MarkdownItGitHubAlert
         const match = firstContent.content.match(RE)
         if (!match)
           continue
-
         const type = match[1].toLowerCase() as keyof typeof icons
         const title = match[2].trim() || (titles[type] ?? capitalize(type))
-        const icon = icons[type]
-        if (!icon)
-          throw new Error(`No icon found for marker ${type}`)
-
+        const icon = icons[type] ?? ''
         firstContent.content = firstContent.content.slice(match[0].length).trimStart()
         open.type = 'html_block'
         open.tag = 'div'
-        open.content = `<div class="${classPrefix} ${classPrefix}-${type}"><p class="${classPrefix}-title">${icon}${title}</p>`
+        open.content = `<div class="${classPrefix} ${classPrefix}-${type}"><p class="${classPrefix}-title">${icon}${escapeHTML(title)}</p>`
         close.type = 'html_block'
         close.tag = 'div'
         close.content = '</div>'
