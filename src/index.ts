@@ -73,7 +73,7 @@ const MarkdownItGitHubAlerts: MarkdownIt.PluginWithOptions<MarkdownItGitHubAlert
           continue
 
         const type = match[1].toLowerCase() as keyof typeof icons
-        const title = match[2] || (titles[type] ?? capitalize(type))
+        const title = match[2].trim() || (titles[type] ?? capitalize(type))
         const icon = icons[type]
         if (!icon)
           throw new Error(`No icon found for marker ${type}`)
