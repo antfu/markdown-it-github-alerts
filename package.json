@@ -23,7 +23,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./styles/*": "./styles/*"
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
@@ -37,7 +38,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "styles"
   ],
   "scripts": {
     "build": "unbuild",
