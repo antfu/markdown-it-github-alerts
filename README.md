@@ -40,6 +40,142 @@ Support [GitHub-style alerts](https://github.com/orgs/community/discussions/1692
 > [!CAUTION]
 > Negative potential consequences of an action.
 
+## Usage
+
+```bash
+npm i markdown-it-github-alerts
+```
+
+```js
+import MarkdownIt from 'markdown-it'
+import MarkdownItGitHubAlerts from 'markdown-it-github-alerts'
+
+const md = MarkdownIt()
+
+md.use(MarkdownItGitHubAlerts)
+
+const html = md.render(/* ... */)
+```
+
+## Functionality
+
+This plugin transforms the following markdown:
+
+```markdown
+> [!NOTE]
+> Highlights information that users should take into account, even when skimming.
+```
+
+to the following HTML:
+
+```html
+<div class="markdown-alert markdown-alert-note">
+  <p class="markdown-alert-title" dir="auto"><!-- svg icon-->Note</p><p>
+  Highlights information that users should take into account, even when skimming.</p>
+</div>
+```
+
+Which is compatible with the GitHub's output.
+
+### Styling
+
+You can write your custom styles for your alerts.
+
+The following CSS is extracted from GitHub for your reference.
+
+```css
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+```
+
+
 ## Sponsors
 
 <p align="center">
