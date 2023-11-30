@@ -1,5 +1,4 @@
 import type MarkdownIt from 'markdown-it'
-import { escapeHTML } from 'zeed'
 
 export interface MarkdownItGitHubAlertsOptions {
   /**
@@ -80,7 +79,7 @@ const MarkdownItGitHubAlerts: MarkdownIt.PluginWithOptions<MarkdownItGitHubAlert
         firstContent.content = firstContent.content.slice(match[0].length).trimStart()
         open.type = 'html_block'
         open.tag = 'div'
-        open.content = `<div class="${classPrefix} ${classPrefix}-${type}"><p class="${classPrefix}-title">${icon}${escapeHTML(title)}</p>`
+        open.content = `<div class="${classPrefix} ${classPrefix}-${type}"><p class="${classPrefix}-title">${icon}${title}</p>`
         close.type = 'html_block'
         close.tag = 'div'
         close.content = '</div>'
