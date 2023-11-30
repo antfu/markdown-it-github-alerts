@@ -47,14 +47,13 @@ const DEFAULT_GITHUB_ICONS = {
 
 const MarkdownItGitHubAlerts: MarkdownIt.PluginWithOptions<MarkdownItGitHubAlertsOptions> = (md, options = {}) => {
   const {
-    markers = ['TIP', 'NOTE', 'IMPORTANT', 'WARNING', 'CAUTION'],
     icons = DEFAULT_GITHUB_ICONS,
     matchCaseSensitive = true,
     titles = {},
     classPrefix = 'markdown-alert',
   } = options
 
-  const RE = new RegExp(`^\\[\\!(${markers.join('|')})\\]\\s`, matchCaseSensitive ? '' : 'i')
+  const RE = new RegExp(`^\\[\\!(\\w+)\\]([^\\n\\r]*)`, matchCaseSensitive ? '' : 'i')
 
   md.core.ruler.after('block', 'github-alerts', (state) => {
     const tokens = state.tokens
@@ -74,7 +73,7 @@ const MarkdownItGitHubAlerts: MarkdownIt.PluginWithOptions<MarkdownItGitHubAlert
           continue
 
         const type = match[1].toLowerCase() as keyof typeof icons
-        const title = titles[type] ?? capitalize(type)
+        const title = match[2] || (titles[type] ?? capitalize(type))
         const icon = icons[type]
         if (!icon)
           throw new Error(`No icon found for marker ${type}`)
