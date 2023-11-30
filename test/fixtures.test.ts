@@ -43,9 +43,9 @@ describe('fixtures', () => {
         const rendered = [
           md.render(content),
           `<style>${CSS}</style>`,
-        ].join('\n')
+        ].join('\n').trim().replace(/\r\n/g, '\n')
 
-        expect(rendered.trim())
+        expect(rendered)
           .toMatchFileSnapshot(path.replace('input', 'output').replace('.md', '.html'))
       })
     })
