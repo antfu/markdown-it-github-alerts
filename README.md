@@ -175,6 +175,21 @@ The following CSS is extracted from GitHub for your reference.
 }
 ```
 
+### Customization
+
+In order to also support [Obsidian callouts syntax](https://help.obsidian.md/Editing+and+formatting/Callouts) it is possible to allow any type of markers with the following setting:
+
+```js
+md.use(MarkdownItGitHubAlerts, {
+  markers: '*'
+})
+```
+Alternative titles are also supported, by appending it to the marker like this:
+
+```markdown
+> [!note] Nota bene
+> The custom title will replace the regular title.
+```
 
 ## Sponsors
 
