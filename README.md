@@ -95,6 +95,22 @@ You might change `github-colors-dark-media.css` to `github-colors-dark-class.css
 
 Refer to the [source code](./styles) for more details.
 
+### Customization
+
+In order to also support [Obsidian callouts syntax](https://help.obsidian.md/Editing+and+formatting/Callouts) it is possible to allow any type of markers with the following setting:
+
+```js
+md.use(MarkdownItGitHubAlerts, {
+  markers: '*'
+})
+```
+Alternative titles are also supported, by appending it to the marker like this:
+
+```markdown
+> [!note] Nota bene
+> The custom title will replace the regular title.
+```
+
 ## Sponsors
 
 <p align="center">

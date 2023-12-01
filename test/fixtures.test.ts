@@ -38,7 +38,9 @@ describe('fixtures', () => {
           xhtmlOut: true,
         })
 
-        md.use(MarkdownItGitHubAlerts)
+        md.use(MarkdownItGitHubAlerts, {
+          markers: '*',
+        })
 
         const rendered = [
           md.render(content),
