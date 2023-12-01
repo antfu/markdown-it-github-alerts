@@ -77,15 +77,22 @@ const MarkdownItGitHubAlerts: MarkdownIt.PluginWithOptions<MarkdownItGitHubAlert
         const title = match[2].trim() || (titles[type] ?? capitalize(type))
         const icon = icons[type] ?? ''
         firstContent.content = firstContent.content.slice(match[0].length).trimStart()
-        open.type = 'html_block'
+        open.type = 'alert_open'
         open.tag = 'div'
-        open.content = `<div class="${classPrefix} ${classPrefix}-${type}"><p class="${classPrefix}-title">${icon}${title}</p>`
-        close.type = 'html_block'
+        open.meta = {
+          title,
+          type,
+          icon,
+        }
+        close.type = 'alert_close'
         close.tag = 'div'
-        close.content = '</div>'
       }
     }
   })
+  md.renderer.rules.alert_open = function (tokens, idx) {
+    const { title, type, icon } = tokens[idx].meta
+    return `<div class="${classPrefix} ${classPrefix}-${type}"><p class="${classPrefix}-title">${icon}${title}</p>`
+  }
 }
 
 function capitalize(str: string) {
