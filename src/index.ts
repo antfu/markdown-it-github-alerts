@@ -9,7 +9,7 @@ export interface MarkdownItGitHubAlertsOptions {
 
   /**
    * If markers case sensitively on matching.
-   * @default true
+   * @default false
    */
   matchCaseSensitive?: boolean
 
@@ -49,7 +49,7 @@ const MarkdownItGitHubAlerts: MarkdownIt.PluginWithOptions<MarkdownItGitHubAlert
   const {
     markers = ['TIP', 'NOTE', 'IMPORTANT', 'WARNING', 'CAUTION'],
     icons = DEFAULT_GITHUB_ICONS,
-    matchCaseSensitive = true,
+    matchCaseSensitive = false,
     titles = {},
     classPrefix = 'markdown-alert',
   } = options
