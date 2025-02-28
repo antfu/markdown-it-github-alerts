@@ -53,7 +53,7 @@
     "prepare": "simple-git-hooks"
   },
   "peerDependencies": {
-    "markdown-it": "^14.0.0"
+    "markdown-it": ">= 13.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.1",
