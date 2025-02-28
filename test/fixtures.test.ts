@@ -1,12 +1,12 @@
 /// <reference types="vite/client" />
 
 import process from 'node:process'
-import { describe, expect, it } from 'vitest'
 import MarkdownIt from 'markdown-it'
-import cssBase from '../styles/github-base.css?raw'
-import cssColorsLight from '../styles/github-colors-light.css?raw'
-import cssColorsDark from '../styles/github-colors-dark-media.css?raw'
+import { describe, expect, it } from 'vitest'
 import MarkdownItGitHubAlerts from '../src'
+import cssBase from '../styles/github-base.css?raw'
+import cssColorsDark from '../styles/github-colors-dark-media.css?raw'
+import cssColorsLight from '../styles/github-colors-light.css?raw'
 
 const CSS = `
 html {
