@@ -23,7 +23,7 @@ ${cssBase}
 `
 
 describe('fixtures', () => {
-  const files = import.meta.glob('./input/*.md', { as: 'raw', eager: true })
+  const files = import.meta.glob<string>('./input/*.md', { query: '?raw', eager: true, import: 'default' })
   const filter = process.env.FILTER
   Object.entries(files)
     .forEach(([path, content]) => {
@@ -47,7 +47,7 @@ describe('fixtures', () => {
           `<style>${CSS}</style>`,
         ].join('\n').trim().replace(/\r\n/g, '\n')
 
-        expect(rendered)
+        await expect(rendered)
           .toMatchFileSnapshot(path.replace('input', 'output').replace('.md', '.html'))
       })
     })

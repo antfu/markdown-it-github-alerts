@@ -55,7 +55,7 @@ const MarkdownItGitHubAlerts: MarkdownIt.PluginWithOptions<MarkdownItGitHubAlert
   } = options
 
   const markerNameRE = markers === '*' ? '\\w+' : markers.join('|')
-  const RE = new RegExp(`^\\[\\!(${markerNameRE})\\]([^\\n\\r]*)`, matchCaseSensitive ? '' : 'i')
+  const RE = new RegExp(`^\\\\?\\[\\!(${markerNameRE})\\]([^\\n\\r]*)`, matchCaseSensitive ? '' : 'i')
 
   md.core.ruler.after('block', 'github-alerts', (state) => {
     const tokens = state.tokens
