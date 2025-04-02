@@ -1,7 +1,7 @@
 {
   "name": "markdown-it-github-alerts",
   "type": "module",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "packageManager": "pnpm@10.7.1",
   "description": "Support GitHub-style alerts for markdown-it",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
