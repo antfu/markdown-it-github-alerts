@@ -2,7 +2,7 @@
   "name": "markdown-it-github-alerts",
   "type": "module",
   "version": "0.3.1",
-  "packageManager": "pnpm@10.5.2",
+  "packageManager": "pnpm@10.7.1",
   "description": "Support GitHub-style alerts for markdown-it",
   "author": "Anthony Fu <anthonyfu117@hotmail.com>",
   "license": "MIT",
@@ -56,20 +56,20 @@
     "markdown-it": ">= 13.0.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.3.0",
-    "@antfu/ni": "^23.3.1",
+    "@antfu/eslint-config": "^4.11.0",
+    "@antfu/ni": "^24.3.0",
     "@types/markdown-it": "^14.1.2",
-    "@types/node": "^22.13.5",
-    "bumpp": "^10.0.3",
-    "eslint": "^9.21.0",
-    "lint-staged": "^15.4.3",
+    "@types/node": "^22.13.17",
+    "bumpp": "^10.1.0",
+    "eslint": "^9.23.0",
+    "lint-staged": "^15.5.0",
     "markdown-it": "^14.1.0",
-    "simple-git-hooks": "^2.11.1",
-    "tsx": "^4.8.0",
-    "typescript": "^5.7.3",
+    "simple-git-hooks": "^2.12.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
     "unbuild": "^3.5.0",
-    "vite": "^6.2.0",
-    "vitest": "^3.0.7"
+    "vite": "^6.2.4",
+    "vitest": "^3.1.1"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

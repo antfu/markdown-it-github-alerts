@@ -1,3 +1,5 @@
 packages:
   - playground
   - examples/*
+onlyBuiltDependencies:
+  - simple-git-hooks
